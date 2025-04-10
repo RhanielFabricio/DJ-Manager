@@ -1,0 +1,1 @@
+console.log('DJ Manager iniciado');

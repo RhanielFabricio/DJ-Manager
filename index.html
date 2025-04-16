@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>DJ Manager</title>
-    <link rel='stylesheet' href='style.css'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-    <h1>Bem-vindo ao DJ Manager</h1>
-    <script src='app.js'></script>
+  <div class="container">
+    <h1>Cadastro de Evento</h1>
+    <form id="evento-form">
+      <label for="nome">Nome do Evento</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="local">Local</label>
+      <input type="text" id="local" name="local" required />
+
+      <label for="data">Data</label>
+      <input type="date" id="data" name="data" required />
+
+      <label for="cache">Valor do Cachê (R$)</label>
+      <input type="number" id="cache" name="cache" required />
+
+      <label for="status">Status</label>
+      <select id="status" name="status">
+        <option value="Agendado">Agendado</option>
+        <option value="Realizado">Realizado</option>
+      </select>
+
+      <button type="submit">Salvar Evento</button>
+    </form>
+
+    <h2>Eventos Cadastrados</h2>
+    <table id="tabela-eventos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Local</th>
+          <th>Data</th>
+          <th>Cachê</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Eventos aparecerão aqui -->
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

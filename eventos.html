@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos Salvos - DJ Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Eventos Cadastrados</h1>
+    <table id="tabela-eventos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Local</th>
+          <th>Data</th>
+          <th>Cachê</th>
+          <th>Status</th>
+          <th>Ações</th> <!-- NOVO -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Eventos aparecerão aqui -->
+      </tbody>
+    </table>
+    <a href="index.html" style="margin-top: 20px; display: inline-block; color: #f7931e;">← Voltar para o cadastro</a>
+  </div>
+
+      <script>
+        let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+        const tbody = document.querySelector("#tabela-eventos tbody");
+
+        function renderizarTabela() {
+          tbody.innerHTML = "";
+          eventos.forEach((evento, index) => {
+            const tr = document.createElement("tr");
+
+           <td>
+  <button onclick="editarEvento(${index})" class="btn-edit">
+    <i class="fas fa-pen"></i> Editar
+  </button>
+  <button onclick="excluirEvento(${index})" class="btn-delete">
+    <i class="fas fa-trash"></i> Excluir
+  </button>
+</td>
+
+            `;
+
+            tbody.appendChild(tr);
+          });
+        }
+
+        function excluirEvento(index) {
+          if (confirm("Tem certeza que deseja excluir este evento?")) {
+            eventos.splice(index, 1);
+            localStorage.setItem("eventos", JSON.stringify(eventos));
+            renderizarTabela();
+          }
+        }
+
+        function editarEvento(index) {
+          localStorage.setItem("eventoEditando", index);
+          window.location.href = "index.html"; // volta para o formulário
+        }
+
+        renderizarTabela();
+      </script>
+
+</body>
+
+</html>
